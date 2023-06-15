@@ -1,0 +1,50 @@
+<div class="wrapper" *ngIf="!submitted">
+<mat-horizontal-stepper #stepper labelPosition="bottom" linear>
+    <mat-step [stepControl]="accountForm">
+        <form [formGroup]="accountForm">
+            <ng-template matStepLabel>Account Details</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="organization name" formControlName="organizationName" required>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <input matInput placeholder="account name" formControlName="accountName" required>    
+            </mat-form-field>
+            <div>
+            <button mat-button  matStepperNext>Next</button>
+        </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="businessForm">
+        <form [formGroup]="businessForm">
+            <ng-template matStepLabel>Business Details</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="industry category" formControlName="industryCategory" required>
+            </mat-form-field> 
+            &nbsp;
+            <mat-form-field>
+                    <input type="number" matInput placeholder="business size" formControlName="businessSize" required>   
+            </mat-form-field>
+            <div>
+        <button mat-button matStepperPrevious>Previous</button>
+        <button mat-button matStepperNext>Next</button>
+        </div>
+</form>
+    </mat-step>
+    <mat-step label="Terms And Conditions">
+        <div>
+            <mat-checkbox [(ngModel)]="acceptedTerms">I accept the terms and conditions</mat-checkbox>
+          </div>
+        <div>
+        <button mat-button matStepperPrevious>Previous</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="submit()">Register</button>
+    </div>
+    </mat-step>
+</mat-horizontal-stepper>
+</div>
+
+<div *ngIf="submitted">
+    <p>Form submitted successfully!</p>
+  </div>
+  
